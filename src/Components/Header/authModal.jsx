@@ -10,12 +10,12 @@ export const AuthModal = ({ type, show, handleClose, sendRequest }) => {
         }
     }, [show]);
 
-    let email;
-    let password;
-    let confirmPassword;
+    let Email;
+    let Password;
+    let ConfirmPassword;
 
     const handlerSendRequest = async () => {
-        const res = await sendRequest({ type: type, email, password });
+        const res = await sendRequest({ type: type, Email, Password });
         setConfirm(res);
         if (!res.success) {
             handleClose();
@@ -23,7 +23,7 @@ export const AuthModal = ({ type, show, handleClose, sendRequest }) => {
     }
 
     const handleRegister = async () => {
-        if (password !== confirmPassword) {
+        if (Password !== ConfirmPassword) {
             setConfirm({ success: true, message: "Passwords do not match." });
             return;
         }
@@ -38,8 +38,8 @@ export const AuthModal = ({ type, show, handleClose, sendRequest }) => {
                     <Modal.Title>Login</Modal.Title>
                 </Modal.Header>
                 <Modal.Body>
-                    <input className={`form-control mb-2 ${confirm.success ? 'is-invalid' : ''}`} placeholder="Email" onChange={(e) => email = e.target.value} />
-                    <input className={`form-control mb-2 ${confirm.success ? 'is-invalid' : ''}`} placeholder="Password" type="password" onChange={(e) => password = e.target.value} />
+                    <input className={`form-control mb-2 ${confirm.success ? 'is-invalid' : ''}`} placeholder="Email" onChange={(e) => Email = e.target.value} />
+                    <input className={`form-control mb-2 ${confirm.success ? 'is-invalid' : ''}`} placeholder="Password" type="password" onChange={(e) => Password = e.target.value} />
                 </Modal.Body>
                 {confirm.success && <small className='text-danger ms-3'>{confirm.message}</small>}
                 <Modal.Footer>
@@ -59,19 +59,19 @@ export const AuthModal = ({ type, show, handleClose, sendRequest }) => {
                         <input
                             className={`form-control mb-2 ${confirm.success ? 'is-invalid' : ''}`}
                             placeholder="Email"
-                            onChange={(e) => email = e.target.value}
+                            onChange={(e) => Email = e.target.value}
                         />
                         <input
                             className={`form-control mb-2 ${confirm.success ? 'is-invalid' : ''}`}
                             placeholder="Password"
                             type="password"
-                            onChange={(e) => password = e.target.value}
+                            onChange={(e) => Password = e.target.value}
                         />
                         <input
                             className={`form-control mb-2 ${confirm.success ? 'is-invalid' : ''}`}
                             placeholder="Confirm Password"
                             type="password"
-                            onChange={(e) => confirmPassword = e.target.value}
+                            onChange={(e) => ConfirmPassword = e.target.value}
                         />
                     </Modal.Body>
                     {confirm.success && (<small className="text-danger ms-3">{confirm.message}</small>)}
